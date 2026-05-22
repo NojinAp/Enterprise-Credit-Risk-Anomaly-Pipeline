@@ -1,0 +1,21 @@
+# Environment
+.env
+
+# Data
+data/raw/
+data/staging/
+data/curated/
+outputs/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Jupyter
+**/.ipynb_checkpoints/
+
+# Java/Spark logs
+derby.log
+metastore_db/
+spark-warehouse/

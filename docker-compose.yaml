@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  airflow:
+    build: .
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/app/data
+      - ./outputs:/app/outputs
+      - ./dags:/app/dags
+      - ./src:/app/src
