@@ -8,7 +8,7 @@ import os
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 load_dotenv(override=True)
 
-BASE_URL = "https://purostage.launchpad.cfapps.ca10.hana.ondemand.com/dynamic_dest/hs4-s4hana-rt/sap/opu/odata/sap/O2C_FICA_CREDITITEM_ANALYSIS_SRV"
+BASE_URL = os.getenv("SAP_BASE_URL")
 
 COOKIES = {
     "JSESSIONID": unquote(os.getenv("SAP_SESSION_ID", "")),

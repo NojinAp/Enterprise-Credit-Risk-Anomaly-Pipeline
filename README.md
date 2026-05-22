@@ -100,7 +100,7 @@ Isolation Forest trained on 20,605 business partners with 23 features:
 
 ## How to Run
 
-> **Note:** This pipeline connects to an internal SAP S/4HANA staging environment. External users will need to substitute their own SAP OData endpoint and credentials in `.env`. The pipeline architecture and transformation logic is fully reusable with any SAP S/4HANA instance.
+> **Note:** This pipeline connects to an internal SAP S/4HANA environment. External users will need to substitute their own SAP OData endpoint and credentials in `.env`. The pipeline architecture and transformation logic is fully reusable with any SAP S/4HANA instance.
 
 ### With Docker (recommended)
 
