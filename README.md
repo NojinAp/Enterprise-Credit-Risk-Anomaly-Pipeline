@@ -137,12 +137,12 @@ alert_cooldown_days = 30
 
 Run against 264,107 transactions across 20,605 business partners (SAP staging environment):
 
-- **597 partners flagged by both methods** (highest confidence — independent agreement between IQR and Isolation Forest)
+- **597 partners flagged by both methods** (highest confidence - independent agreement between IQR and Isolation Forest)
 - **4,887 total partners flagged** across all confidence tiers
-- **Reversal ratios up to 260x** detected — systematic billing reversals requiring investigation
-- **$6.17M outstanding balance** on a partner with only 254 transactions — severe exposure mismatch
+- **Reversal ratios up to 260x** detected - systematic billing reversals requiring investigation
+- **$6.17M outstanding balance** on a partner with only 254 transactions - severe exposure mismatch
 - **Single transactions up to $152,171** surfaced for manual review
-- **MaxROSScore = 1.0** on majority of top-flagged partners — amounts placed exactly at authority limit boundaries, a classic threshold-gaming signal
+- **MaxROSScore = 1.0** on majority of top-flagged partners - amounts placed exactly at authority limit boundaries, a classic threshold-gaming signal
 - Peer-group scoring (Segment × TransactionType) surfaces partners that appear normal globally but are statistical outliers within their true cohort
 
 ---
