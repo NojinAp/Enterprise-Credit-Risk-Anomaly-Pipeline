@@ -135,12 +135,15 @@ alert_cooldown_days = 30
 
 ## Key Results
 
-- **1,031 high-risk partners flagged** from 616,248 transactions across the accounts receivable portfolio
-- **Reversal ratios exceeding 1,000×** on several partners - systematic billing reversals requiring investigation
-- **Single transactions above $15M** surfaced for manual review
-- **Negative balances exceeding $39M** identified as significant outstanding exposure
-- **One partner with 17,743 transactions and a reversal ratio of 17,728×** - far outside all peer group norms
-- Peer-group z-scores surfaced partners that appear normal in absolute terms but are statistical outliers within their cohort
+Run against 264,107 transactions across 20,605 business partners (SAP staging environment):
+
+- **597 partners flagged by both methods** (highest confidence — independent agreement between IQR and Isolation Forest)
+- **4,887 total partners flagged** across all confidence tiers
+- **Reversal ratios up to 260x** detected — systematic billing reversals requiring investigation
+- **$6.17M outstanding balance** on a partner with only 254 transactions — severe exposure mismatch
+- **Single transactions up to $152,171** surfaced for manual review
+- **MaxROSScore = 1.0** on majority of top-flagged partners — amounts placed exactly at authority limit boundaries, a classic threshold-gaming signal
+- Peer-group scoring (Segment × TransactionType) surfaces partners that appear normal globally but are statistical outliers within their true cohort
 
 ---
 
@@ -185,6 +188,6 @@ Copy `.env.example` to `.env` and fill in:
 
 ```
 SAP_BASE_URL=https://your-sap-host/sap/opu/odata/sap/...
-SAP_USERNAME=your_username
-SAP_PASSWORD=your_password
+SAP_SESSION_ID=your_jsessionid_cookie
+SAP_VCAP_ID=your_vcap_id_cookie
 ```
