@@ -1,4 +1,4 @@
-# Business Partner Credit Risk — Anomaly Detection Pipeline
+# Business Partner Credit Risk - Anomaly Detection Pipeline
 
 An end-to-end data engineering pipeline that pulls live accounts receivable data from SAP S/4HANA via OData API, transforms it through a Medallion Architecture using PySpark, and runs two complementary anomaly detection methods to surface high-risk business partners for financial investigation.
 
@@ -30,7 +30,7 @@ SAP S/4HANA OData API
   Watchlist               outputs/anomaly_watchlist.csv
 ```
 
-Partners flagged by **both** methods are highest-confidence. Each method catches different patterns — agreement is a strong signal.
+Partners flagged by **both** methods are highest-confidence. Each method catches different patterns - agreement is a strong signal.
 
 ---
 
@@ -53,7 +53,7 @@ Partners flagged by **both** methods are highest-confidence. Each method catches
 
 ```
 ├── dags/
-│   └── pipeline_dag.py              # Airflow DAG — ingest → stage → curate
+│   └── pipeline_dag.py              # Airflow DAG - ingest → stage → curate
 ├── notebooks/
 │   ├── 01_EDA.ipynb                 # Exploratory data analysis
 │   └── 02_features_and_model.ipynb  # Feature distributions, detection, watchlist
@@ -96,13 +96,13 @@ Partners flagged by **both** methods are highest-confidence. Each method catches
 | `UniqueDocTypes` | Diversity of SAP document types used |
 | `UniqueMainTransactions` | Diversity of transaction types |
 | `UniqueContracts` | Number of distinct contract accounts |
-| `ReversalRatio` | ZC reversal docs relative to AC credit docs — primary fraud signal |
+| `ReversalRatio` | ZC reversal docs relative to AC credit docs - primary fraud signal |
 | `NettedPairsCount` | Matched AC/ZC cancellation pairs (excluded from credit totals) |
 | `Balance` / `TotalDebit` | Outstanding financial exposure |
 | `AvgDaysOverdue` / `MaxDaysOverdue` | Overdue profile |
 | `HighValueCount` / `ExtremeValueCount` | Transactions above $10k / $100k thresholds |
 | `AvgROSScore` / `MaxROSScore` | Proximity of amounts to internal authority limit boundaries |
-| `RoundTransactionRate` | Fraction of round-number transactions — classic fraud indicator |
+| `RoundTransactionRate` | Fraction of round-number transactions - classic fraud indicator |
 
 All detection runs **within peer groups** (Segment × TransactionType) so a partner is compared to genuine peers, not the full population.
 
@@ -112,15 +112,15 @@ All detection runs **within peer groups** (Segment × TransactionType) so a part
 
 ### IQR Scoring
 
-For each feature, computes how many IQRs above Q3 a partner sits within their peer group. A partner scoring above the multiplier threshold on any feature is flagged. Fully explainable — the flag reason names the specific features that triggered.
+For each feature, computes how many IQRs above Q3 a partner sits within their peer group. A partner scoring above the multiplier threshold on any feature is flagged. Fully explainable - the flag reason names the specific features that triggered.
 
 ### Isolation Forest
 
-Trains an Isolation Forest on all 19 features within each peer group independently. Catches multivariate anomalies that no single feature would reveal — e.g. a partner with moderate amounts but an unusual combination of high reversal ratio, high volatility, and many round transactions.
+Trains an Isolation Forest on all 19 features within each peer group independently. Catches multivariate anomalies that no single feature would reveal - e.g. a partner with moderate amounts but an unusual combination of high reversal ratio, high volatility, and many round transactions.
 
 ### Configuration
 
-All thresholds live in [src/config.py](src/config.py) — no magic numbers in pipeline code:
+All thresholds live in [src/config.py](src/config.py) - no magic numbers in pipeline code:
 
 ```python
 iqr_multiplier = 2.0
@@ -136,10 +136,10 @@ alert_cooldown_days = 30
 ## Key Results
 
 - **1,031 high-risk partners flagged** from 616,248 transactions across the accounts receivable portfolio
-- **Reversal ratios exceeding 1,000×** on several partners — systematic billing reversals requiring investigation
+- **Reversal ratios exceeding 1,000×** on several partners - systematic billing reversals requiring investigation
 - **Single transactions above $15M** surfaced for manual review
 - **Negative balances exceeding $39M** identified as significant outstanding exposure
-- **One partner with 17,743 transactions and a reversal ratio of 17,728×** — far outside all peer group norms
+- **One partner with 17,743 transactions and a reversal ratio of 17,728×** - far outside all peer group norms
 - Peer-group z-scores surfaced partners that appear normal in absolute terms but are statistical outliers within their cohort
 
 ---
@@ -162,7 +162,7 @@ Airflow UI: `http://localhost:8080`
 
 ### Local
 
-**Prerequisite:** Java 17+ must be installed — required by PySpark.
+**Prerequisite:** Java 17+ must be installed - required by PySpark.
 
 ```bash
 python -m venv venv
